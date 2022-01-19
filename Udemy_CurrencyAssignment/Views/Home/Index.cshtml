@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <h2>Currency Assignment</h2>
+        @{ 
+            List<int> denominations = new List<int>() { 1000, 500, 100, 10, 1 };
+            List<int> count = new List<int>();
+
+
+            if (ViewBag.amount > 0){
+                int temp = ViewBag.amount;
+
+                foreach (int d in denominations)
+                {
+                    int currentCurrency = Convert.ToInt32(temp / d);
+
+                    count.Add(currentCurrency);
+
+                    temp = temp - (currentCurrency * d);
+                }
+            }
+        }
+
+    <table>
+        <tr>
+            <td>Denomination</td>
+            <td>Amount</td>
+        </tr>
+        @for (int i = 0; i < count.Count; i++)
+        {
+
+            <tr>
+                <td>@denominations[i]</td>
+                <td>@count[i] * @denominations[i]  </td>
+            </tr>
+        }
+    </table>
+    </div>
+</body>
+</html>
