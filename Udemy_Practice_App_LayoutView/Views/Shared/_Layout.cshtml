@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/umd/popper.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="row bg-light">
+        <div class="col-8">
+            <nav class="navbar navbar-expand-sm ">
+                <div class="col-8">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home/index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home/contact">Contact</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-4 text-black">@ViewBag.Msg</div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <div class="list-group" style="min-height:1050px;padding:0px; background-color:#fa8405;">
+                    <a class="list-group-item" href="#" style="background-color:transparent">Favourites</a>
+                    <a class="list-group-item" href="#" style="background-color:transparent">Products</a>
+                    <a class="list-group-item" href="#" style="background-color:transparent">Orders</a>
+                    @RenderSection("SideBar", required:false);
+                </div>
+            </div>
+            <div class="col-10" style="min-height:610px;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
