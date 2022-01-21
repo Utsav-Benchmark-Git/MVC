@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy_App_Url_Routing", "Udemy_App_Url_Routing.csproj", "{5D269163-57D4-4260-BC72-CD9732E02FA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D269163-57D4-4260-BC72-CD9732E02FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D269163-57D4-4260-BC72-CD9732E02FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D269163-57D4-4260-BC72-CD9732E02FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D269163-57D4-4260-BC72-CD9732E02FA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFE19356-B86B-4F82-983E-2396FBCCD59E}
+	EndGlobalSection
+EndGlobal
