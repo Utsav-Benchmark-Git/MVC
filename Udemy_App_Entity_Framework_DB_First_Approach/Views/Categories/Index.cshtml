@@ -1,0 +1,21 @@
+﻿@model List<Udemy_App_Entity_Framework_DB_First_Approach.Models.Category>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Categories</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    
+    @foreach (var c in Model) 
+    { 
+        <tr>
+            <td>@c.CategoryID</td>
+            <td>@c.CategoryName</td>
+        </tr>
+    }
+</table>

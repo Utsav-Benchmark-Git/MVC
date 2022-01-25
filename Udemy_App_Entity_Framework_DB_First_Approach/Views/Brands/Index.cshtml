@@ -1,0 +1,23 @@
+﻿@model List <Udemy_App_Entity_Framework_DB_First_Approach.Models.Brand>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Brands</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.BrandID</td>
+            <td>@b.BrandName</td>
+        </tr>
+    }
+</table>
+

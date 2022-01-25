@@ -1,0 +1,34 @@
+﻿@model Udemy_App_Entity_Framework_DB_First_Approach.Models.Product
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2 class="text-center">Delete Product</h2>
+
+<form action="/products/delete/@Model.ProductID" method="post">
+    @*<div class="row">
+            <div class="col-md-6">
+                <label>Product Name</label>
+                <input type="text" name="ProductName" value="@Model.ProductName">
+            </div>
+            <div class="col-md-6">
+                <label>Price</label>
+                <input type="number" name="Price" value="@Model.Price">
+            </div>
+    </div>*@
+    <input type="hidden" name="ProductID" value="@Model.ProductID">
+
+    <table class="table">
+        <tr>
+            <th>Product Name</th>
+            <td>@Model.ProductName</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>@Model.Price</td>
+        </tr>
+    </table>
+    <button class="btn btn-danger" type="submit">Delete</button>
+</form>
+
