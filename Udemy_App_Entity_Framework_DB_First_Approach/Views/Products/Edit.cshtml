@@ -19,9 +19,16 @@
         </div>
     </div>
     <div class="row m-2">
+        @{
+            string dop = "";
+            if (Model.DateOfPurchase.HasValue)
+            {
+                dop = @Model.DateOfPurchase.Value.ToString("yyyy-MM-dd");
+            }
+        }
         <div class="col-md-6">
             <label>Date of Purchase</label>
-            <input type="date" class="form-control" name="DateOfPurchase" placeholder="Date of Purchase" value="@Model.DateOfPurchase.Value.ToString("yyyy-MM-dd")">
+            <input type="date" class="form-control" name="DateOfPurchase" placeholder="Date of Purchase" value="@dop">
         </div>
         <div class="col-md-6">
             <label>Availability Status</label>
@@ -30,12 +37,38 @@
     </div>
     <div class="row m-2">
         <div class="col-md-6">
-            <label>Brand ID</label>
-            <input type="number" class="form-control" name="BrandID" placeholder="Brand ID" value="@Model.BrandID">
+            <label>Brand</label>
+            <select class="form-control" name="BrandID">
+                <option value="">Select Brand</option>
+                @foreach (var b in ViewBag.Brands)
+                {
+                    if (b.BrandID == Model.BrandID)
+                    {
+                        <option value="@b.BrandID" selected="selected">@b.BrandName</option>
+                    }
+                    else
+                    {
+                        <option value="@b.BrandID">@b.BrandName</option>
+                    }
+                }
+            </select>
         </div>
         <div class="col-md-6">
-            <label>Category ID</label>
-            <input type="number" class="form-control" name="CategoryID" placeholder="Category ID" value="@Model.CategoryID">
+            <label>Category</label>
+            <select class="form-control" name="CategoryID">
+                <option value="">Select Category</option>
+                @foreach (var c in ViewBag.Categories)
+                {
+                    if (c.CategoryID == Model.CategoryID)
+                    {
+                        <option value="@c.CategoryID" selected="selected">@c.CategoryName</option>
+                    }
+                    else
+                    {
+                        <option value="@c.CategoryID">@c.CategoryName</option>
+                    }
+                }
+            </select>
         </div>
     </div>
     <div class="row m-2">

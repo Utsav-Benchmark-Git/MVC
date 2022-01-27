@@ -19,15 +19,133 @@
     </div>
 </div>
 <table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Date of Purchase</th>
-        <th>Price</th>
-        <th>Brand ID</th>
-        <th>Category ID</th>
+    <tr class="table-secondary">
+        @*ID*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/products/index?SortColumn=ProductID&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">ID</a>
+                if (ViewBag.SortColumn == "ProductID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/products/index?SortColumn=ProductID&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">ID</a>
+                if (ViewBag.SortColumn == "ProductID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+
+        @*Name*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/products/index?SortColumn=ProductName&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">Name</a>
+                if (ViewBag.SortColumn == "ProductName")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/products/index?SortColumn=ProductName&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">Name</a>
+                if (ViewBag.SortColumn == "ProductName")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+
+        @*DateOfPurchase*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/products/index?SortColumn=DateOfPurchase&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">Date Of Purchase</a>
+                if (ViewBag.SortColumn == "DateOfPurchase")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/products/index?SortColumn=DateOfPurchase&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">Date Of Purchase</a>
+                if (ViewBag.SortColumn == "DateOfPurchase")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+
+        @*Price*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/products/index?SortColumn=Price&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">Price</a>
+                if (ViewBag.SortColumn == "Price")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/products/index?SortColumn=Price&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">Price</a>
+                if (ViewBag.SortColumn == "Price")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+
+        @*Brand*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/products/index?SortColumn=BrandID&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">Brand</a>
+                if (ViewBag.SortColumn == "BrandID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/products/index?SortColumn=BrandID&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">Brand</a>
+                if (ViewBag.SortColumn == "BrandID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+
+        @*Category*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/products/index?SortColumn=CategoryID&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">Category</a>
+                if (ViewBag.SortColumn == "CategoryID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/products/index?SortColumn=CategoryID&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">Category</a>
+                if (ViewBag.SortColumn == "CategoryID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+
+        @*Active*@
         <th>Active</th>
+
+        @*AvailabilityStatus*@
         <th>Available</th>
+
         <th>Details</th>
     </tr>
 
@@ -36,10 +154,30 @@
         <tr>
             <td>@p.ProductID</td>
             <td>@p.ProductName</td>
-            <td>@p.DateOfPurchase.Value.ToString("d/M/yyyy")</td>
-            <td>@p.Price.Value.ToString("C")</td>
-            <td>@p.BrandID</td>
-            <td>@p.CategoryID</td>
+            <td>
+                @if(p.DateOfPurchase.HasValue)
+                {
+                    <span> @p.DateOfPurchase.Value.ToString("d/M/yyyy")</span>
+                }
+           </td>
+            <td>
+                @if(p.Price.HasValue)
+                {
+                    <span>@p.Price.Value.ToString("C")</span>
+                }
+            </td>
+            <td>
+                @if (p.Brand != null)
+                 {
+                    <span>@p.Brand.BrandName</span>
+                 }
+            </td>
+            <td>
+                @if (p.Category != null)
+                 {
+                <span>@p.Category.CategoryName</span>
+                 }
+            </td>
             <td>@p.Active</td>
             <td>@p.AvailabilityStatus</td>
             <td>
