@@ -10,7 +10,7 @@ namespace Udemy_App_Entity_Framework_DB_First_Approach.Controllers
     public class ProductsController : Controller
     {
         // GET: Products/Index
-        public ActionResult Index(string search = "", string SortColumn = "ProductName", string IconClass = "fa-sort-asc")
+        public ActionResult Index(string search = "", string SortColumn = "ProductID", string IconClass = "fa-sort-asc", int PageNo = 1)
         {
             EFDBFirstDatabaseEntities1 db = new EFDBFirstDatabaseEntities1();
             ViewBag.search = search;
@@ -97,6 +97,13 @@ namespace Udemy_App_Entity_Framework_DB_First_Approach.Controllers
                 }
             }
 
+            /*Paging*/
+            int NoOfRecordsPerPage = 2;
+            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(products.Count)/Convert.ToDouble(NoOfRecordsPerPage)));
+            int NoOfRecordsToSkip = (PageNo - 1) * NoOfRecordsPerPage;
+            ViewBag.PageNo = PageNo;
+            ViewBag.NoOfPages = NoOfPages;
+            products = products.Skip(NoOfRecordsToSkip).Take(NoOfRecordsPerPage).ToList();
             return View(products);
         }
 
@@ -121,6 +128,15 @@ namespace Udemy_App_Entity_Framework_DB_First_Approach.Controllers
         public ActionResult Create(Product p)
         {
             EFDBFirstDatabaseEntities1 db = new EFDBFirstDatabaseEntities1();
+            if (Request.Files.Count >= 1)
+            {
+                var file = Request.Files[0];
+                var imgBytes = new Byte[file.ContentLength];
+                file.InputStream.Read(imgBytes, 0, file.ContentLength);
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
+                p.Photo = base64String;
+            }
+
             db.Products.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -147,7 +163,16 @@ namespace Udemy_App_Entity_Framework_DB_First_Approach.Controllers
             existingProduct.CategoryID = p.CategoryID;
             existingProduct.AvailabilityStatus = p.AvailabilityStatus;
             existingProduct.Active = p.Active;
+            if (Request.Files.Count >= 1)
+            {
+                var file = Request.Files[0];
+                var imgBytes = new Byte[file.ContentLength];
+                file.InputStream.Read(imgBytes, 0, file.ContentLength);
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
+                existingProduct.Photo = base64String;
+            }
 
+            /*existingProduct.Photo = p.Photo; */
             db.SaveChanges();
             return RedirectToAction("Index", "Products");
         }

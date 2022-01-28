@@ -22,6 +22,7 @@ namespace Udemy_App_Entity_Framework_DB_First_Approach.Models
         public Nullable<long> CategoryID { get; set; }
         public Nullable<long> BrandID { get; set; }
         public Nullable<bool> Active { get; set; }
+        public string Photo { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }

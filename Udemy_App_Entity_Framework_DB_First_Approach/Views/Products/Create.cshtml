@@ -6,7 +6,7 @@
 
 <h2 class="text-center">Create Product</h2>
 
-<form action="/products/create" method="post">
+<form action="/products/create" method="post" enctype="multipart/form-data">
     <div class="row m-2">
         <div class="col-md-6">
             <label>Product Name</label>
@@ -53,10 +53,16 @@
             </select>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Image</label>
+            <input type="file" class="form-control" name="Photo">
+        </div>
+    </div>
     <div class="row m-2">
         <div class="col-md-6">
             <label>Active</label>
-            <input type="checkbox" name="Active">
+            <input type="checkbox" name="Active" value="true">
         </div>
     </div>
     <button class="btn btn-primary m-2" type="submit">Submit</button>
