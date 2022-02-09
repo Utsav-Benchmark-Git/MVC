@@ -12,8 +12,11 @@
     </div>
     <div class="col-md-6">
         <form class="form-check-inline" action="/products/index">
-            <label class="mr-1">Search</label>
-            <input type="search" class="form-control mr-1" id="search" name="search" placeholder="Search" value="@ViewBag.search" autocomplete="off">
+            @Html.Label("Search", new { @class = "mr-1" })
+            @*<label class="mr-1">Search</label>*@
+
+            @Html.TextBox("Search", ViewBag.search as string, new { @class = "form-control mr-1" })
+           @* <input type="search" class="form-control mr-1" id="search" name="search" placeholder="Search" value="@ViewBag.search" autocomplete="off">*@
             <button class="btn-primary" type="submit">Go</button>
         </form>
     </div>
@@ -155,24 +158,24 @@
     {
         <tr>
             <td> <img src="data:image;base64, @p.Photo" width="100px"/></td>
-            <td>@p.ProductID</td>
-            <td>@p.ProductName</td>
+            <td>@Html.DisplayFor(temp => p.ProductID)</td>
+            <td>@Html.DisplayFor(temp => p.ProductName)</td>
             <td>
                 @if(p.DateOfPurchase.HasValue)
                 {
-                    <span> @p.DateOfPurchase.Value.ToString("d/M/yyyy")</span>
+                <span> @p.DateOfPurchase.Value.ToString("d/M/yyyy")</span>
                 }
            </td>
             <td>
                 @if(p.Price.HasValue)
                 {
-                    <span>@p.Price.Value.ToString("C")</span>
+                <span>@p.Price.Value.ToString("C")</span>
                 }
             </td>
             <td>
                 @if (p.Brand != null)
                  {
-                    <span>@p.Brand.BrandName</span>
+                <span>@p.Brand.BrandName</span>
                  }
             </td>
             <td>
@@ -184,9 +187,9 @@
             <td>@p.Active</td>
             <td>@p.AvailabilityStatus</td>
             <td>
-                <a href="/products/details/@p.ProductID">Details</a>
-                <a href="/products/edit/@p.ProductID">Edit</a>
-                <a href="/products/delete/@p.ProductID">Delete</a>
+                @Html.ActionLink("Details", "Details", new { id = p.ProductID, controller = "Products"})
+                @Html.ActionLink("Edit", "Edit", new { id = p.ProductID, controller = "Products"})
+                @Html.ActionLink("Delete", "Delete", new { id = p.ProductID, controller = "Products"})
             </td>
 
         </tr>

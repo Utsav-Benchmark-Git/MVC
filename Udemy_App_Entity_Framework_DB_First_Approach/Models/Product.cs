@@ -11,17 +11,49 @@ namespace Udemy_App_Entity_Framework_DB_First_Approach.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Product
     {
+     
+        [Key]
+        [Display(Name ="Product ID")]
         public long ProductID { get; set; }
+
+        [Required]
+        [Display(Name = "Product Name")]
+
         public string ProductName { get; set; }
+
+        [Required]
+        [Display(Name = "Product Price")]
+
         public Nullable<decimal> Price { get; set; }
+
+        [Display(Name = "Date Of Purchase")]
+
         public Nullable<System.DateTime> DateOfPurchase { get; set; }
+
+        [Display(Name = "Availability Status")]
+
         public string AvailabilityStatus { get; set; }
+
+        [Required]
+        [Display(Name = "Category")]
+
         public Nullable<long> CategoryID { get; set; }
+
+        [Required]
+        [Display(Name = "Brand")]
+
         public Nullable<long> BrandID { get; set; }
+
+        [Display(Name = "Active")]
+
         public Nullable<bool> Active { get; set; }
+
+        [Display(Name = "Photo")]
+
         public string Photo { get; set; }
     
         public virtual Brand Brand { get; set; }

@@ -125,21 +125,27 @@ namespace Udemy_App_Entity_Framework_DB_First_Approach.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product p)
+        public ActionResult Create([Bind(Include ="ProductID, ProductName, Price, DateOfPurchase, AvailabilityStatus, CategoryID, BrandID, Active, Photo")]Product p)
         {
             EFDBFirstDatabaseEntities1 db = new EFDBFirstDatabaseEntities1();
-            if (Request.Files.Count >= 1)
-            {
-                var file = Request.Files[0];
-                var imgBytes = new Byte[file.ContentLength];
-                file.InputStream.Read(imgBytes, 0, file.ContentLength);
-                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
-                p.Photo = base64String;
-            }
+            if (ModelState.IsValid) { 
+                if (Request.Files.Count >= 1)
+                {
+                    var file = Request.Files[0];
+                     var imgBytes = new Byte[file.ContentLength];
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength);
+                    var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
+                    p.Photo = base64String;
+                }
 
-            db.Products.Add(p);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.Products.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
