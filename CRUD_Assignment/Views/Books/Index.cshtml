@@ -1,0 +1,212 @@
+﻿@model List<CRUD_Assignment.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@* <h2 class="text-center p-4">Books Table</h2>*@
+
+<a href="/books/create" class ="btn btn-outline-primary" style="text-decoration:none; color:#000">Add New Book <i class="fa fa-plus"></i></a>
+<form class="d-inline-flex m-4" action="/books/index">
+    <input type="search" class="mr-2 form-control" name="search" placeholder="Search" autocomplete="off" value="@ViewBag.search">
+    <button type="submit" class="btn btn-success mr-2">Go</button>
+</form>
+<table class="table table-bordered">
+    <tr class="table-info">
+
+        @*Book ID*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/books/index?SortColumn=BookID&IconClass=fa-sort-asc&PageNo=1" style="text-decoration:none; color:#000">Book ID</a>
+                if (ViewBag.SortColumn == "BookID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/books/index?SortColumn=BookID&IconClass=fa-sort-desc&PageNo=1" style="text-decoration:none; color:#000">Book ID</a>
+                if (ViewBag.SortColumn == "BookID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+        @*Image*@
+        <th>Image</th>
+
+        @*ISBN*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/books/index?SortColumn=ISBN&IconClass=fa-sort-asc&PageNo=1" style="text-decoration:none; color:#000">ISBN</a>
+                if (ViewBag.SortColumn == "ISBN")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/books/index?SortColumn=ISBN&IconClass=fa-sort-desc&PageNo=1" style="text-decoration:none; color:#000">ISBN</a>
+                if (ViewBag.SortColumn == "ISBN")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+        @*Book Name*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/books/index?SortColumn=BookName&IconClass=fa-sort-asc&PageNo=1" style="text-decoration:none; color:#000">Book Name</a>
+                if (ViewBag.SortColumn == "BookName")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/books/index?SortColumn=BookName&IconClass=fa-sort-desc&PageNo=1" style="text-decoration:none; color:#000">Book Name</a>
+                if (ViewBag.SortColumn == "BookName")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+        @*Author ID*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/books/index?SortColumn=AuthorID&IconClass=fa-sort-asc&PageNo=1" style="text-decoration:none; color:#000">Author</a>
+                if (ViewBag.SortColumn == "AuthorID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/books/index?SortColumn=AuthorID&IconClass=fa-sort-desc&PageNo=1" style="text-decoration:none; color:#000">Author</a>
+                if (ViewBag.SortColumn == "AuthorID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+        @*Publication*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/books/index?SortColumn=Publication&IconClass=fa-sort-asc&PageNo=1" style="text-decoration:none; color:#000">Publication</a>
+                if (ViewBag.SortColumn == "Publication")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/books/index?SortColumn=Publication&IconClass=fa-sort-desc&PageNo=1" style="text-decoration:none; color:#000">Publication</a>
+                if (ViewBag.SortColumn == "Publication")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+        @*Price*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/books/index?SortColumn=Price&IconClass=fa-sort-asc&PageNo=1" style="text-decoration:none; color:#000">Price</a>
+                if (ViewBag.SortColumn == "Price")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/books/index?SortColumn=Price&IconClass=fa-sort-desc&PageNo=1" style="text-decoration:none; color:#000">Price</a>
+                if (ViewBag.SortColumn == "Price")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+        <th>Action</th>
+    </tr>
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.BookID</td>
+            <td><img src="data:image;base64, @b.Image" style="width:100px"/></td>
+            <td>
+                @if (@b.ISBN != null)
+                {
+                    <span>@b.ISBN</span>
+                }
+            </td>
+            <td>@b.BookName</td>
+            <td>
+                @if (@b.Author != null)
+                {
+                    <span>@b.Author.AuthorName</span>
+                }
+            </td>
+            <td>
+                @if (@b.Publication != null)
+                {
+                    <span>@b.Publication</span>
+                }
+            </td>
+            <td>
+                @if (@b.Price.HasValue)
+                {
+                    <span>@b.Price.Value.ToString("C")</span>
+                }
+            </td>
+            <td>
+                <a href="/books/details/@b.BookID" class="btn btn-outline-info" style="text-decoration:none; color:#000;"><i class="fa fa-file"></i> Details</a>
+                <a href="/books/edit/@b.BookID" class="btn btn-outline-primary" style="text-decoration:none; color:#000;"><i class="fa fa-edit"></i> Edit</a>
+                <a href="/books/delete/@b.BookID" class="btn btn-outline-danger" style="text-decoration:none; color:#000;"><i class="fa fa-trash"></i> Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+    <tr>
+        <td colspan="9">
+            @{
+                int PrevPgNo = ViewBag.PageNo - 1;
+                if (PrevPgNo <= 0)
+                {
+                    PrevPgNo = 1;
+                }
+                int NextPgNo = ViewBag.PageNo + 1;
+                if (NextPgNo > ViewBag.Pages)
+                {
+                    NextPgNo = ViewBag.Pages;
+                }
+            }
+
+            <ul class="pagination justify-content-center">
+                @for (int i = 0; i < ViewBag.Pages; i++)
+                {
+                    if ((i + 1) == ViewBag.PageNo)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="/books/index?SortColumn=@ViewBag.SortColumn&IconClass=@ViewBag.IconClass&PageNo=@(i + 1)">@(i + 1)</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="/books/index?SortColumn=@ViewBag.SortColumn&IconClass=@ViewBag.IconClass&PageNo=@(i + 1)">@(i + 1)</a>
+                        </li>
+                    }
+
+                }
+            </ul>
+        </td>
+    </tr>
+
+
+

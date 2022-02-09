@@ -1,0 +1,25 @@
+﻿@model CRUD_Assignment.Models.Book
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2 class="text-center">Delete Book</h2>
+
+
+<form action="/books/delete/@Model.BookID" method="post">
+    <div class="row m-2">
+        <label>Book Name</label>
+        <input type="hidden" name="BookID" value="@Model.BookID">
+        <input type="text" class="form-control"  name="BookName" value="@Model.BookName">
+    </div>
+    <div class="row m-2">
+        <label>Price</label>
+        <input type="number" class="form-control" name="Price" value="@Model.Price"> 
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-info" type="submit">Delete</button>
+        <a class="btn btn-danger" href="/authors/index">Cancel</a>
+    </div>
+</form>

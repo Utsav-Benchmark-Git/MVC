@@ -1,0 +1,22 @@
+﻿@model CRUD_Assignment.Models.Author
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Edit Author</h2>
+
+<form action="/authors/edit/@Model.AuthorID" method="post">
+    <div class="row m-2">
+        <label>Author Name</label>
+        <input type="hidden" name="AuthorID" value="@Model.AuthorID">
+        <input type="text" class="form-control" placeholder="Author Name" name="AuthorName" value="@Model.AuthorName">
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-info" type="submit">Update</button>
+        <a class="btn btn-danger" href="/authors/index">Cancel</a>
+    </div>
+</form>
+
+

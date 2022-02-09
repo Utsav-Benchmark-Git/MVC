@@ -1,0 +1,17 @@
+﻿@model CRUD_Assignment.Models.Author
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<table class="table m-2">
+    <tr>
+        <th>Author ID</th>
+        <td>@Model.AuthorID</td>
+    </tr>
+    <tr>
+        <th>Author Name</th>
+        <td>@Model.AuthorName</td>
+    </tr>
+ </table>
+<p class="text-center"> <a href="/authors/index" class="btn btn-dark" style="text-decoration:none;color:#fff"><i class="fa fa-arrow-left"></i> Back</a></p>

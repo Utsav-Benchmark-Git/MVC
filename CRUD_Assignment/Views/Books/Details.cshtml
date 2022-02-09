@@ -1,0 +1,55 @@
+﻿@model CRUD_Assignment.Models.Book
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<img class ="m-4" src="data:image;base64,@Model.Image" style="width:200px" />
+<table class="table m-2">
+    <tr>
+        <th>Book ID</th>
+        <td>@Model.BookID</td>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <td>
+            @if (@Model.ISBN != null)
+            {
+                <span>@Model.ISBN</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>Book Name</th>
+        <td>@Model.BookName</td>
+    </tr>
+    <tr>
+        <th>Author</th>
+        <td>
+            @if (@Model.Author != null)
+            {
+                <span>@Model.Author.AuthorName</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>Publication</th>
+        <td>
+            @if (@Model.Publication != null)
+            {
+                <span>@Model.Publication</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>
+            @if (@Model.Price.HasValue)
+            {
+                <span>@Model.Price.Value.ToString("C")</span>
+            }
+        </td>
+    </tr>
+</table>
+<p class="text-center"> <a href="/books/index" class="btn btn-dark" style="text-decoration:none;color:#fff"><i class="fa fa-arrow-left"></i> Back</a></p>

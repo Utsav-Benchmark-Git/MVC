@@ -1,0 +1,70 @@
+﻿@model List<CRUD_Assignment.Models.Author>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@*<h2 class="text-center p-4">Author Table</h2>*@
+
+<a href="/authors/create" class="btn btn-outline-primary" style="text-decoration:none; color:#000">Add New Author <i class="fa fa-plus"></i></a>
+<form class="d-inline-flex m-4" action="/authors/index">
+    <input type="search" class="mr-2 form-control" name="search" placeholder="Search" autocomplete="off" value="@ViewBag.search">
+    <button type="submit" class="btn btn-success mr-2">Go</button>
+</form>
+<table class="table table-bordered">
+    <tr class="table-info">
+        @*Author ID*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/authors/index?SortColumn=AuthorID&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">Author ID</a>
+                if (ViewBag.SortColumn == "AuthorID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/authors/index?SortColumn=AuthorID&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">Author ID</a>
+                if (ViewBag.SortColumn == "AuthorID")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+
+        @*Author Name*@
+        <th>
+            @if (ViewBag.IconClass == "fa-sort-desc")
+            {
+                <a href="/authors/index?SortColumn=AuthorName&IconClass=fa-sort-asc" style="text-decoration:none; color:#000">Author Name</a>
+                if (ViewBag.SortColumn == "AuthorName")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+            else
+            {
+                <a href="/authors/index?SortColumn=AuthorName&IconClass=fa-sort-desc" style="text-decoration:none; color:#000">Author Name</a>
+                if (ViewBag.SortColumn == "AuthorName")
+                {
+                    <i class="fa @ViewBag.IconClass"></i>
+                }
+            }
+        </th>
+        <th>Action</th>
+    </tr>
+    @foreach (var a in Model) 
+    { 
+        <tr>
+            <td>@a.AuthorID</td>
+            <td>@a.AuthorName</td>
+            <td>
+                <a href="/authors/details/@a.AuthorID" class="btn btn-outline-info" style="text-decoration:none; color:#000;"><i class="fa fa-file"></i> Details</a>
+                <a href="/authors/edit/@a.AuthorID" class="btn btn-outline-primary" style="text-decoration:none; color:#000;"><i class="fa fa-edit"></i> Edit</a>
+                <a href="/authors/delete/@a.AuthorID" class="btn btn-outline-danger" style="text-decoration:none; color:#000;"><i class="fa fa-trash"></i> Delete</a>
+               
+            </td>
+        </tr>
+    }
+</table>

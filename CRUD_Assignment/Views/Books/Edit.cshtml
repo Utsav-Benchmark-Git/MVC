@@ -1,0 +1,58 @@
+﻿@model CRUD_Assignment.Models.Book
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Edit</h2>
+<form action="/books/edit/@Model.BookID" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <label>ISBN</label>
+            <input type="hidden"  name="BookID" value="@Model.BookID">
+            <input type="number" class="form-control" placeholder="ISBN" name="ISBN" value="@Model.ISBN">
+        </div>
+        <div class="col-md-6">
+            <label>Book Name</label>
+            <input type="text" class="form-control" placeholder="Book Name" name="BookName" value="@Model.BookName">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Author</label>
+            <select class="form-control" name="AuthorID">
+                <option value="">Select Author</option>
+                @foreach (var a in ViewBag.Authors)
+                {
+                    if (a.AuthorID == Model.AuthorID)
+                    {
+                        <option value="@a.AuthorID" selected="selected">@a.AuthorName</option>
+                    }
+                    else
+                    {
+                        <option value="@a.AuthorID">@a.AuthorName</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label>Publication</label>
+            <input type="text" class="form-control" placeholder="Publication" name="Publication" value="@Model.Publication">
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-6">
+            <label>Price</label>
+            <input type="number" class="form-control" placeholder="Price" name="Price" value="@Model.Price">
+        </div>
+        <div class="col-md-6">
+            <label>Image</label>
+            <input type="file" class="form-control-file" name="Image" value="@Model.Image">
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-info" type="submit">Update</button>
+        <a class="btn btn-danger" href="/books/index">Cancel</a>
+    </div>
+</form>
+

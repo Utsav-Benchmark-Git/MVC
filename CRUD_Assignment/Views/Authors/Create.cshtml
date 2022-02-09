@@ -1,0 +1,21 @@
+﻿@model CRUD_Assignment.Models.Author
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Create Author</h2>
+
+<form action="/authors/create" method="post">
+    <div class="row m-2">
+            <label>Author Name</label>
+            <input type="text" class="form-control" placeholder="Author Name" name="AuthorName">
+            @Html.ValidationMessageFor(temp=>temp.AuthorName)
+    </div>
+        
+    <div class="text-center">
+        <button class="btn btn-success" type="submit">Add</button>
+        <a class="btn btn-danger" href="/authors/index">Cancel</a>
+    </div>
+</form>
+

@@ -1,0 +1,19 @@
+﻿@model CRUD_Assignment.Models.Author
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Delete Author</h2>
+
+<form action="/authors/delete/@Model.AuthorID" method="post">
+    <div class="row m-2">
+        <label>Author Name</label>
+        <input type="hidden" name="AuthorID" value="@Model.AuthorID">
+        <input type="text" class="form-control" name="AuthorName" value="@Model.AuthorName">
+    </div>
+    <div class="text-center">
+        <button class="btn btn-info" type="submit">Delete</button>
+        <a class="btn btn-danger" href="/authors/index">Cancel</a>
+    </div>
+</form>
